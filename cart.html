@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cart - Krz Club</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    background-color: #FFBDC8;
+    font-family: tahoma;
+    color: white;
+    margin: 0;
+}
+
+/* Header */
+.head {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #FFBDC8;
+    width: 100%;
+    height: 150px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.head .logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+}
+
+.head .logo-link img {
+    height: 130px;
+    width: 150px;
+}
+
+.head img.account,
+.head img.cart {
+    margin-left: 10px;
+    padding-top: 100px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+/* Navigation Bar */
+.topnav {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ED220D;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.topnav .left {
+    display: flex;
+    align-items: center;
+}
+
+.topnav .center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+}
+
+.topnav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 13pt;
+    font-family: tahoma;
+    padding: 10px;
+}
+
+.topnav a:hover {
+    background-color: #FFBDC8;
+    color: #ED220D;
+}
+
+.topnav .search-container {
+    display: flex;
+    align-items: center;
+}
+
+.topnav input[type="text"] {
+    padding: 9px 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 12pt;
+    outline: none;
+}
+
+#search-btn {
+    background-color: #FFBDC8;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-btn img {
+    display: block;
+}
+
+/* Cart Table */
+.cart-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #ED220D;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.cart-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-container th, .cart-container td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.cart-container th {
+    font-size: 14pt;
+}
+
+.cart-container td img {
+    width: 80px;
+    border-radius: 8px;
+}
+
+/* Quantity */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-container input.quantity {
+    width: 50px;
+    text-align: center;
+    border: 0.5px solid white;
+    padding: 6px 3px;
+    margin: 0 5px;
+    color: white;
+    background-color: #ED220D;
+    pointer-events: none;
+}
+
+.qty-btn {
+    padding: 6px 12px;
+    background-color: #FFBDC8;
+    border: 0.5px solid white;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Remove Button */
+.remove-btn {
+    padding: 6px 12px;
+    background-color: #ED220D;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Total and Checkout */
+.cart-total {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 16pt;
+}
+
+button.checkout {
+    margin-top: 10px;
+    padding: 12px 40px;
+    border: 0.5px solid white;
+    background-color: #FFBDC8;
+    font-weight: bold;
+    font-size: 12pt;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .cart-container table, .cart-container th, .cart-container td {
+        font-size: 10pt;
+    }
+    .cart-container td img {
+        width: 60px;
+    }
+}
+</style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="head">
+        <a href="cherrysite.html" class="logo-link">
+            <img src="logo.png" class="logo">
+        </a>
+        <a href="account.html"><img src="account.png" class="account"></a>
+        <a href="cart.html"><img src="cart.png" class="cart"></a>
+    </div>
+
+<!-- Navigation Bar -->
+<div class="topnav">
+    <div class="left">
+        <div class="search-container">
+            <input type="text" placeholder="Search" id="search-input">
+            <button id="search-btn">
+                <img src="search.png" alt="Search" width="16" height="16">
+            </button>
+        </div>
+    </div>
+    <div class="center">
+        <a href="cakes.html">Cakes</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="cupcakes.html">Cupcakes</a>
+    </div>
+</div>
+
+<!-- Cart -->
+<div class="cart-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="cake1.png" alt="Strawberry Kingdom Cake"></td>
+                <td>Strawberry Kingdom Cake</td>
+                <td>190</td>
+                <td>
+                    <div class="quantity-container">
+                        <button class="qty-btn">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="qty-btn">+</button>
+                    </div>
+                </td>
+                <td>190</td>
+                <td><button class="remove-btn">X</button></td>
+            </tr>
+            <tr>
+                <td><img src="cupcake1.png" alt="Black Forest Cupcake"></td>
+                <td>Black Forest Cupcake</td>
+                <td>12</td>
+                <td>
+                    <div class="quantity-container">
+                        <button class="qty-btn">-</button>
+                        <input type="number" class="quantity" value="1" min="1">
+                        <button class="qty-btn">+</button>
+                    </div>
+                </td>
+                <td>12</td>
+                <td><button class="remove-btn">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="cart-total">
+        Total: 202 SAR
+    </div>
+    <button class="checkout">Checkout</button>
+</div>
+
+</body>
+</html>

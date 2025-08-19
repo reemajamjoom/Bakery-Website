@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product Details - Krz Club</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    background-color: #FFBDC8;
+    font-family: tahoma;
+    color: white;
+    margin: 0;
+}
+
+/* Header */
+.head {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #FFBDC8;
+    width: 100%;
+    height: 150px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.head img.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 130px;
+    width: 150px;
+}
+    
+    .head img.logo {
+        height: 130px;
+        width: 150px;
+    }
+
+
+
+.head img.account,
+.head img.cart {
+    margin-left: 10px;
+    padding-top: 100px;
+    height: 30px;
+    width: 30px;
+}
+
+/* Navigation Bar */
+.topnav {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ED220D;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.topnav .left {
+    display: flex;
+    align-items: center;
+}
+
+.topnav .center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+}
+
+.topnav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 13pt;
+    font-family: tahoma;
+    padding: 10px;
+}
+
+.topnav a:hover {
+    background-color: #FFBDC8;
+    color: #ED220D;
+}
+
+.topnav .search-container {
+    display: flex;
+    align-items: center;
+}
+
+.topnav input[type="text"] {
+    padding: 9px 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 12pt;
+    outline: none;
+}
+
+#search-btn {
+    background-color: #FFBDC8;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-btn img {
+    display: block;
+}
+
+/* Product container */
+.product-page {
+    display: flex;
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #ED220D;
+    border-radius: 10px;
+    padding: 20px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.product-page img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+
+}
+
+.product-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 250px;
+}
+
+.product-name {
+    font-size: 20pt;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 16pt;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.product-description {
+    font-size: 12pt;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.quantity-container input.quantity {
+    width: 50px;
+    text-align: center;
+    border: 0.5px solid white;
+    padding: 6px 3px;
+    margin: 0 5px;
+}
+
+.qty-btn {
+    padding: 6px 12px;
+    background-color: #FFBDC8;
+    border: 0.5px solid white;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.qty-btn:hover {
+    background-color: #ED220D;
+}
+
+button.add-cart {
+    padding: 10px 40px;
+    border: 0.5px solid white;
+    background-color: #FFBDC8;
+    font-weight: bold;
+    font-size: 12pt;
+    color: white;
+    cursor: pointer;
+}
+
+button.add-cart:hover {
+    background-color: #ED220D;
+}
+
+@media (max-width: 700px) {
+    .product-page {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-details {
+        text-align: center;
+    }
+}
+</style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="head">
+        <a href="cherrysite.html" style="position: absolute; left: 50%; transform: translateX(-50%); top: 10px;">
+            <img src="logo.png" class="logo">
+        </a>
+        <a href="account.html">
+        <img src="account.png" class="account">
+            </a>
+        <a href="cart.html">
+            <img src="cart.png" class="cart">
+        </a>
+    </div>
+
+<!-- Navigation Bar -->
+<div class="topnav">
+    <div class="left">
+        <div class="search-container">
+            <input type="text" placeholder="Search" id="search-input">
+            <button id="search-btn">
+                <img src="search.png" alt="Search" width="16" height="16">
+            </button>
+        </div>
+    </div>
+    <div class="center">
+        <a href="cakes.html">Cakes</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="cupcakes.html">Cupcakes</a>
+    </div>
+</div>
+
+<!-- Product Details -->
+<div class="product-page">
+    <img src="cake1.png" alt="Strawberry Kingdom Cake">
+
+    <div class="product-details">
+        <div class="product-name">Strawberry Kingdom Cake</div>
+        <div class="product-price">190 SAR</div>
+        <div class="product-description">
+            A delicious strawberry cake with fresh cream and a sweet strawberry topping. Perfect for birthdays and celebrations.
+        </div>
+
+        <div class="quantity-container">
+            <button class="qty-btn decrease">-</button>
+            <input type="number" class="quantity" value="1" min="1">
+            <button class="qty-btn increase">+</button>
+        </div>
+
+        <button class="add-cart">Add to Cart</button>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.add-cart').click(function(){
+        alert("Has been added to cart!");
+    });
+});
+</script>
+</body>
+</html>

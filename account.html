@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account - Krz Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: #FFBDC8;
+            font-family: tahoma;
+            color: white;
+            margin: 0;
+        }
+
+        /* Header */
+        .head {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: #FFBDC8;
+            width: 100%;
+            height: 150px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .head img.logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 130px;
+            width: 150px;
+        }
+
+        .head img.account,
+        .head img.cart {
+            margin-left: 10px;
+            padding-top: 100px;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+        }
+
+        /* Navigation Bar */
+        .topnav {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #ED220D;
+            width: 100%;
+            height: 50px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .topnav .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .topnav .center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+        }
+
+        .topnav a {
+            color: #f2f2f2;
+            text-decoration: none;
+            font-size: 13pt;
+            font-family: tahoma;
+            padding: 10px;
+        }
+
+        .topnav a:hover {
+            background-color: #FFBDC8;
+            color: #ED220D;
+        }
+
+        .topnav .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .topnav input[type="text"] {
+            padding: 9px 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 12pt;
+            outline: none;
+        }
+
+        #search-btn {
+            background-color: #FFBDC8;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            padding: 10px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #search-btn img {
+            display: block;
+        }
+
+        /* Account Container */
+        .account-page {
+            max-width: 900px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .account-sections-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .account-section {
+            flex: 1;
+            background-color: #ED220D;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .account-section h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18pt;
+        }
+
+        .account-section label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .account-section input {
+            width: 250px;
+            max-width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid white;
+            font-size: 12pt;
+            background-color: #FFBDC8;
+            color: #ED220D;
+        }
+
+        /* Buttons */
+        .btn, .view-all-orders {
+            background-color: #FFBDC8;
+            color: #ED220D;
+            border: none;
+            border-radius: 5px;
+            padding: 13px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        .btn:hover, .view-all-orders:hover {
+            background-color: white;
+            color: #ED220D;
+        }
+
+        /* Make only Edit + View Order buttons RED */
+        .edit-btn, .view-order, #save-address {
+            background-color: #ED220D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .edit-btn:hover, .view-order:hover, #save-address:hover {
+            background-color: white;
+            color: #ED220D;
+        }
+
+        /* Address Box */
+        .address-box {
+            position: relative;
+            background-color: #FFBDC8;
+            color: #ED220D;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .address-box button.edit-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Order Box */
+        .order-box {
+            background-color: #FFBDC8;
+            color: #ED220D;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .order-box button.view-order {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #FFBDC8;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            color: #ED220D;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 18pt;
+            cursor: pointer;
+        }
+
+        .track-btn {
+            margin-top: 15px;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ED220D;
+            color: white;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto; /* center button */
+        }
+
+        .track-btn:hover {
+            color: #FFBDC8;
+        }
+
+        /* Fix View Order images size */
+        .modal-products img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+            vertical-align: middle;
+            border-radius: 5px;
+        }
+
+        .modal-products div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        /* Edit Address Modal inputs */
+        #addressModal input {
+            width: 70%; /* make them shorter */
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid white;
+            font-size: 12pt;
+            background-color: #FFBDC8;
+            color: #ED220D;
+        }
+        /* Edit Address Modal labels */
+        #addressModal label {
+            text-align: left; /* move labels to the left */
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #save-address {
+            display: block;
+            margin: 0 auto; /* center button */
+        }
+
+        @media (max-width: 700px) {
+            .account-page {
+                margin: 20px;
+            }
+            .account-sections-row {
+                flex-direction: column;
+            }
+            .account-section input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="head">
+    <a href="cherrysite.html" style="position: absolute; left: 50%; transform: translateX(-50%); top: 10px;">
+        <img src="logo.png" class="logo">
+    </a>
+    <a href="account.html"><img src="account.png" class="account"></a>
+    <a href="cart.html"><img src="cart.png" class="cart"></a>
+</div>
+
+<!-- Navigation Bar -->
+<div class="topnav">
+    <div class="left">
+        <div class="search-container">
+            <input type="text" placeholder="Search" id="search-input">
+            <button id="search-btn">
+                <img src="search.png" alt="Search" width="16" height="16">
+            </button>
+        </div>
+    </div>
+    <div class="center">
+        <a href="cakes.html">Cakes</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="cupcakes.html">Cupcakes</a>
+    </div>
+</div>
+
+<!-- Account Page Content -->
+<div class="account-page">
+
+    <!-- Row for Personal Info + Password -->
+    <div class="account-sections-row">
+        <!-- Personal Info -->
+        <div class="account-section">
+            <h2>Personal Information</h2>
+            <label>Name</label>
+            <input type="text" value="Reema J">
+            <label>Email</label>
+            <input type="email" value="reema@example.com">
+            <label>Phone</label>
+            <input type="text" value="+966 5xxxxxxx">
+        </div>
+
+        <!-- Password -->
+        <div class="account-section">
+            <h2>Change Password</h2>
+            <label>Old Password</label>
+            <input type="password" placeholder="Enter old password">
+            <label>New Password</label>
+            <input type="password" placeholder="Enter new password">
+            <br><br><button class="btn">Update Password</button>
+        </div>
+    </div>
+
+    <!-- Addresses -->
+    <div class="account-section">
+        <h2>Addresses</h2>
+
+        <div class="address-box">
+            <button class="edit-btn">Edit</button>
+            <p><strong>Country:</strong> Saudi Arabia</p>
+            <p><strong>City:</strong> Riyadh</p>
+            <p><strong>District:</strong> Al Olaya</p>
+            <p><strong>Street:</strong> Bakery Street</p>
+            <p><strong>Zip Code:</strong> 12345</p>
+            <p><strong>Building No:</strong> 10</p>
+        </div>
+
+        <div class="address-box">
+            <button class="edit-btn">Edit</button>
+            <p><strong>Country:</strong> Saudi Arabia</p>
+            <p><strong>City:</strong> Riyadh</p>
+            <p><strong>District:</strong> Al Malaz</p>
+            <p><strong>Street:</strong> Sweet Avenue</p>
+            <p><strong>Zip Code:</strong> 54321</p>
+            <p><strong>Building No:</strong> 22</p>
+        </div>
+    </div>
+
+    <!-- Orders -->
+    <div class="account-section">
+        <h2>My Orders</h2>
+       <a href="orders.html"> <button class="view-all-orders">View All Orders</button></a><br><br>
+
+        <div class="order-box" data-order="123">
+            <p><strong>Order #123</strong></p>
+            <p>Order Date: 2025-08-01</p>
+            <p>Products: Strawberry Kingdom Cake, Black Forest Cupcake</p>
+            <button class="view-order">View Order</button>
+        </div>
+
+        <div class="order-box" data-order="124">
+            <p><strong>Order #124</strong></p>
+            <p>Order Date: 2025-08-10</p>
+            <p>Products: Cherry Red Cookie, Green Forest Cookie</p>
+            <button class="view-order">View Order</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Order Modal -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h3>Order Details</h3>
+        <p id="modal-order-number"></p>
+        <p id="modal-order-date"></p>
+        <div class="modal-products" id="modal-products"></div>
+        <p id="modal-shipping"></p>
+        <p id="modal-total"></p>
+        <button class="track-btn">Track Order</button>
+    </div>
+</div>
+
+<!-- Address Edit Modal -->
+<div id="addressModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="addressClose">&times;</span>
+        <h3>Edit Address</h3>
+        <label>Country</label>
+        <input type="text" id="edit-country">
+        <label>City</label>
+        <input type="text" id="edit-city">
+        <label>District</label>
+        <input type="text" id="edit-district">
+        <label>Street</label>
+        <input type="text" id="edit-street">
+        <label>Zip Code</label>
+        <input type="text" id="edit-zip">
+        <label>Building No</label>
+        <input type="text" id="edit-building">
+        <br><br>
+        <button id="save-address">Save</button>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        const orderData = {
+            "123": {
+                date: "2025-08-01",
+                products: [
+                    {name:"Strawberry Kingdom Cake", price:190, img:"cake1.png"},
+                    {name:"Black Forest Cupcake", price:25, img:"cupcake1.png"}
+                ],
+                shipping: 15
+            },
+            "124": {
+                date: "2025-08-10",
+                products: [
+                    {name:"Cherry Red Cookie", price:10, img:"cookie1.png"},
+                    {name:"Green Forest Cookie", price:12, img:"cookie2.png"}
+                ],
+                shipping: 10
+            }
+        };
+
+        // Order Modal
+        $('.view-order').click(function(){
+            let orderId = $(this).closest('.order-box').data('order');
+            let data = orderData[orderId];
+
+            $('#modal-order-number').text("Order #" + orderId);
+            $('#modal-order-date').text("Order Date: " + data.date);
+
+            let productsHtml = "";
+            let total = 0;
+            data.products.forEach(p => {
+                productsHtml += `<div><img src="${p.img}" alt="${p.name}"><span>${p.name} - ${p.price} SAR</span></div>`;
+                total += p.price;
+            });
+            $('#modal-products').html(productsHtml);
+            $('#modal-shipping').text("Shipping: " + data.shipping + " SAR");
+            $('#modal-total').text("Total: " + (total + data.shipping) + " SAR");
+
+            $('#orderModal').fadeIn();
+        });
+
+        $('.modal-close').click(function(){
+            $('.modal').fadeOut();
+        });
+
+        $(window).click(function(e){
+            if($(e.target).is('.modal')){
+                $('.modal').fadeOut();
+            }
+        });
+
+        // Address Edit Modal
+        let currentAddressBox = null;
+
+        $('.address-box .edit-btn').click(function(){
+            currentAddressBox = $(this).closest('.address-box');
+
+            $('#edit-country').val(currentAddressBox.find('p:contains("Country")').text().split(": ")[1]);
+            $('#edit-city').val(currentAddressBox.find('p:contains("City")').text().split(": ")[1]);
+            $('#edit-district').val(currentAddressBox.find('p:contains("District")').text().split(": ")[1]);
+            $('#edit-street').val(currentAddressBox.find('p:contains("Street")').text().split(": ")[1]);
+            $('#edit-zip').val(currentAddressBox.find('p:contains("Zip Code")').text().split(": ")[1]);
+            $('#edit-building').val(currentAddressBox.find('p:contains("Building No")').text().split(": ")[1]);
+
+            $('#addressModal').fadeIn();
+        });
+
+        $('#addressClose').click(function(){
+            $('#addressModal').fadeOut();
+        });
+
+        $('#save-address').click(function(){
+            if(currentAddressBox){
+                currentAddressBox.find('p:contains("Country")').html("<strong>Country:</strong> " + $('#edit-country').val());
+                currentAddressBox.find('p:contains("City")').html("<strong>City:</strong> " + $('#edit-city').val());
+                currentAddressBox.find('p:contains("District")').html("<strong>District:</strong> " + $('#edit-district').val());
+                currentAddressBox.find('p:contains("Street")').html("<strong>Street:</strong> " + $('#edit-street').val());
+                currentAddressBox.find('p:contains("Zip Code")').html("<strong>Zip Code:</strong> " + $('#edit-zip').val());
+                currentAddressBox.find('p:contains("Building No")').html("<strong>Building No:</strong> " + $('#edit-building').val());
+            }
+            $('#addressModal').fadeOut();
+        });
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Krz Club</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body{
+        background-color: #FFBDC8;
+        font-family:tahoma;
+        color: white;
+        margin: 0;
+    }
+
+    /* Topnav */
+    .topnav {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: #ED220D;
+      width: 100%;
+      height: 50px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .topnav .left {
+      display: flex;
+      align-items: center;
+    }
+
+    .topnav .center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+    }
+
+    .topnav a {
+      color: #f2f2f2;
+      text-decoration: none;
+      font-size: 13pt;
+      font-family: tahoma;
+      padding: 10px;
+    }
+
+    .topnav a:hover {
+      background-color: #FFBDC8;
+      color: #ED220D;
+    }
+
+    .topnav .search-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .topnav input[type="text"] {
+      padding: 9px 10px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      font-size: 12pt;
+      outline: none;
+    }
+
+    #search-btn {
+      background-color: #FFBDC8;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      padding: 10px 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #search-btn img {
+      display: block;
+    }
+
+    /* Header */
+    .head {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background-color: #FFBDC8;
+      width: 100%;
+      height: 150px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .head img.logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 130px;
+      width: 150px;
+    }
+   
+   .head img.logo {
+       height: 130px;
+       width: 150px;
+   }
+
+
+    .head img.account,
+    .head img.cart {
+      margin-left: 10px;
+      padding-top: 100px;
+      height: 30px;
+      width: 30px;
+    }
+
+    /* Slider */
+    .slider-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 30px 0;
+
+      border-radius: 10px;
+      padding: 10px;
+      background-color: #FFBDC8; /* prevents shadow from being clipped */
+    }
+
+    .slider-container img {
+        display: block;
+        border: 1px solid white;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05); /* shadow behind the image */
+    }
+
+
+    .slider-container .prev,
+    .slider-container .next {
+      cursor: pointer;
+      background-color: #ED220D;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      border: 1px solid white;
+      padding: 10px;
+      border-radius: 3px;
+    }
+
+    /* Dots */
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .dot:hover {
+      background-color: #E0996E;
+    }
+
+    #w a{
+        font-size:25px;
+        color:#ED220D;
+        text-align:center;
+        text-decoration:none;
+    }
+
+    /* Product Grid */
+    #products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    
+    }
+
+    .product-card {
+      background: #ED220D;
+      border: 1px solid white;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      color: white;
+      transition: transform 0.2s;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      border-radius: 8px;
+    }
+
+    .product-name {
+      margin: 10px 0 5px;
+      font-weight: bold;
+      font-size: 12pt;
+      color: white;
+    }
+
+    .product-price {
+      color: #E0996E;
+      font-size: 10pt;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    /* Quantity container */
+    .quantity-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 5px;
+    }
+
+    .quantity-container input.quantity {
+      width: 50px;
+      text-align: center;
+      border: 0.5px solid white;
+      padding: 6px 3px;
+      margin: 0 5px;
+    }
+
+    .qty-btn {
+      padding: 6px 12px;
+      background-color: #FFBDC8;
+      border: 0.5px solid white;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .qty-btn:hover {
+      background-color: #ED220D;
+      color: white;
+    }
+
+    button.l {
+      padding: 6px 44px;
+      border: 0.5px solid white;
+      background-color:#FFBDC8;
+      font-weight:bold;
+      font-size:8pt;
+      color: white;
+      cursor: pointer;
+    }
+
+    button.l:hover {
+        background-color: #ED220D;
+        color: white;
+    }
+</style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="head">
+        <a href="cherrysite.html" style="position: absolute; left: 50%; transform: translateX(-50%); top: 10px;">
+            <img src="logo.png" class="logo">
+        </a>
+        <a href="account.html">
+        <img src="account.png" class="account">
+            </a>
+        <a href="cart.html">
+            <img src="cart.png" class="cart">
+        </a>
+    </div>
+
+
+
+    <!-- Navigation Bar -->
+    <div class="topnav">
+      <div class="left">
+        <div class="search-container">
+          <input type="text" placeholder="Search" id="search-input">
+          <button id="search-btn">
+            <img src="search.png" alt="Search" width="16" height="16">
+          </button>
+        </div>
+      </div>
+
+      <div class="center">
+          <a href="cakes.html">Cakes</a>
+          <a href="cookies.html">Cookies</a>
+          <a href="cupcakes.html">Cupcakes</a>
+      </div>
+    </div>
+
+
+    <!-- View All Link -->
+    <br>
+    <br>
+    <p id="w"><a href="unfound-viewall.html">Cakes </a></p>
+
+    <!-- Product Grid -->
+    <div id="products">
+      <div class="product-card">
+          <a href="product1.html"><img src="cake1.png" alt="cake1"></a>
+        <div class="product-name">Strawberry Kingdom Cake</div>
+        <div class="product-price">190 SAR</div>
+        <div class="quantity-container">
+          <button class="qty-btn decrease">-</button>
+          <input type="number" class="quantity" value="1" min="1">
+          <button class="qty-btn increase">+</button>
+        </div>
+        <button class="l">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="cupcake1.png" alt="cupcake1">
+        <div class="product-name">Paradise in Red Cake</div>
+        <div class="product-price">120 SAR</div>
+        <div class="quantity-container">
+          <button class="qty-btn decrease">-</button>
+          <input type="number" class="quantity" value="1" min="1">
+          <button class="qty-btn increase">+</button>
+        </div>
+        <button class="l">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="cake2.png" alt="cake2">
+        <div class="product-name">Black Forest Cake</div>
+        <div class="product-price">200 SAR</div>
+        <div class="quantity-container">
+          <button class="qty-btn decrease">-</button>
+          <input type="number" class="quantity" value="1" min="1">
+          <button class="qty-btn increase">+</button>
+        </div>
+        <button class="l">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="cupcake2.png" alt="cupcake2">
+        <div class="product-name">Banana Mystery Cake</div>
+        <div class="product-price">170 SAR</div>
+        <div class="quantity-container">
+          <button class="qty-btn decrease">-</button>
+          <input type="number" class="quantity" value="1" min="1">
+          <button class="qty-btn increase">+</button>
+        </div>
+        <button class="l">Add to Cart</button>
+      </div>
+</div>
+
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.l').click(function(){
+                alert("Has been added to cart!");
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <br><br>
+    <center><a href="https://instagram.com/unfound.sa"><img src= "insta.png" height="50" width="50"></a></center>
+    <center><br>Krz Club &copy</center>
+    <br><br>
+</body>
+</html>
